@@ -69,7 +69,10 @@ def classify0(inX, dataSet, labels, k):
         [1, 2, 3, 1, 2, 3],
         [1, 2, 3, 1, 2, 3]])
     """
-    diffMat = tile(inX, (dataSetSize, 1)) - dataSet
+    inX_tile = tile(inX, (dataSetSize, 1))
+    # print("inX_tile", inX_tile)
+    diffMat = inX_tile - dataSet
+    # print(diffMat)
     """
     欧氏距离:  点到点之间的距离
        第一行:  同一个点 到 dataSet 的第一个点的距离。
@@ -82,7 +85,7 @@ def classify0(inX, dataSet, labels, k):
     """
     # 取平方
     sqDiffMat = diffMat ** 2
-    # 将矩阵的每一行相加
+    # 将矩阵的每一行相加(axis=1表示按行相加 , axis=0表示按列相加)
     sqDistances = sqDiffMat.sum(axis=1)
     # 开方
     distances = sqDistances ** 0.5
@@ -322,6 +325,6 @@ def handwritingClassTest():
 
 
 if __name__ == '__main__':
-    # demo01()
-    datingClassTest()
+    demo01()
+    # datingClassTest()
     # handwritingClassTest()
